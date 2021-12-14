@@ -14,6 +14,6 @@ It uses [Docusaurus](https://docusaurus.io/), is pretty easy to work with, etc.
 
 ## Front End
 
-[https://github.com/maglev-training/front-end](https://github.com/maglev-training/front-end)
+[https://github.com/maglev-training/frontend](https://github.com/maglev-training/frontend)
 
 This is a mono-repo using Nx from [https://nx.dev/](https://nx.dev/)
