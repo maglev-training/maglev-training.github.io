@@ -52,7 +52,32 @@ In Microservice architecture we have some guardrails that will keep us from doin
 
 Here's my advice. Get emotional. Get annoyed. Get frustrated. There is a _lot_ of wisdom in those emotions. Feel them, don't disassociate, but do something about them! If you are working on something pretty simple and you start to get annoyed with it because now you are dealing with something really complicated, don't just "buckle down" and get it "done". **It. Does. Not. Belong. There**. It feels annoying and frustrating because it is "clashing" with the beautiful simple, elegant stuff you just wrote. If you are writing an Angular component and find yourself 18 tabs deep into learning about RXJS operators, push the yourself away from the desk like it is on _fire_. You are doing it wrong. Your component _needs_ something, but it doesn't need to know how that is done. That is the message. Have your component ask something else for it, define an _interface_, and finish up the component. Then go work on that thing. You will find it _much_ less frustrating when you (a) know exactly what it is you need, (b) can concentrate on _just_ that, and (c) aren't worried about protecting your code from other dummies. Just you.
 
-## Factoring Microservices
+## Our Guardrails
+
+The most common, and, frankly, most boring question about microservices is the dreaded "How big?". Maybe I find it a boring question because it is so hard to answer. So, let's just bracket that question. "Bracket" in the philosophical sense. Just set it aside and see what happens through observation and following some basic forms. Making some rules for ourselves about what our services are allowed to do, what they aren't allowed to do, and I suspect you will find you end up with what will arguable be "micro", even if we can't find a way to quantify them.
+
+### Guardrail One: Microservices are Created to Provide Value
+
+A production team is always creating software to put in front of our customers. The longer we work on something, the bigger the risk. Are we building the right thing? This is very different than "building what they are asking for". Briefly in the history of software development there *were* people that knew what the product should be and how it should work. In it's infancy, software development was the process of "digitizing" and "automating" existing systems. One of the first applications I wrote was to replace a dental office receptionist's paper calendar and post it notes with a database to track and schedule appointments. It was "done" when it worked as a suitable replacement for what she was already using. Hopefully more reliably and faster, but that was it. 
+
+On a bigger scale, legions of people were trained as "Systems Analysts". They knew *business*, and they knew *software*. They would figure out how to "modernize" your factory, your warehouse, your order processing. All that stuff. 
+
+I think one of the most damaging things in modern software development is the assumption that we are still living in that world. We are no longer simply coming up with faster, better ways to do what we've already done. We are creating entirely new concepts, new worlds, that have never existed before. There are no "subject matter experts". In anything but the most simple of software development tasks, nobody knows what it will end up looking like, how it will work, what is "best". And still we have overly long "planning sprints" were we get out our chrystal balls and speculate what we should do over the next 6 months. Nobody knows. They look to the "business", and those people *never* want to admit they don't know things, so they make up some crap. And, for our part, we too easily fall into the "well, just tell me what you want, and we'll make it", which makes us perfect targets for being given a bunch of story cards that have no basis in reality, other than to be used against us when we don't deliver some imagined product on time.
+
+Many developers (myself included) spent the interregnum between the two paradigms of software development (building computer stuff to replace analog stuff) and now building *bigger* systems, *bigger* frameworks to make development "easy". We pretended we knew the future, and we built big complicated things to prepare us for it. And we've left that crap for a generation of people that are building software for use cases and contexts that didn't even exist when we created these mega-frameworks. A mega framework that presupposes all content will be delivered through stateless HTML applications makes it a royal pain in the ass to build stateful applications that run on these new-fangled devices like phones and web browsers (I mean, 15 years ago, who would of thought that we'd be building applications that are written in JavaScript! A language that doesn't even know what an integer is!).
+
+I have seen *so many* applications that could have been written with 1/2 the code and 1/3 of the time, if they didn't have to bow down to some sacred "enterprise platform" that was designed to ensure we'd have absolute consistency across the enterprise. Unfortunately, that consistency is mostly "how we did things 10 years ago", and every new application is some form of lipstick on a pig monstrosity that tries to hide the ancient underpinnings of so many "enterprise service bus" implementations, or "universal API gateways".
+
+Sometimes what we do is we try to "modernize" those application. Rewrite them. I talked to some people working on a rewrite of a huge call center management application recently. They told me that while doing "archeology" through the old code base, they found hundreds of business rules embedded in the code that were not documented anywhere else. You can imagine the temptation to "play it safe" and just reimplement those very same rules in the new system. I can't but help think they'll end up with an expensive version of the very thing they started with. 
+
+> *Eventually* we will have to talk a bunch about how to do that kind of thing - how to go from "Monoliths to Microservices". I'm a big fan of Sam Newman's book "Monoliths to Microservices"[^6]. Going from a "monolith" to "microservices" is a great way to go. Even so, it doesn't need to be such a Manichean thing as "Oh, we have this 'legacy' monolith, so we *should* move it to Microservices". I've created plenty of things that start life as a microservice, but complexity sneaks in and then they are a monolith. I've refactored monoliths to microservices to the point that the monolith disappears and nobody even realy notices. I don't think, though, that if I hadn't already created applications using a microservice architecture from the start I would have done a very good job. I think it would have been too tempting to just stay in the snug monolith world. 
+
+
+
+
+### Guardrail Two: Microservices must be Independently Deployable
+
+### Guardrail Three: Failure is a Feature
 
 ## Integration Patterns
 
@@ -75,3 +100,6 @@ Here's my advice. Get emotional. Get annoyed. Get frustrated. There is a _lot_ o
 [^5]:
     Flow - Csíkszentmihályi
     [Wikipedia](<https://en.wikipedia.org/wiki/Flow_(psychology)>)
+
+[^6]:
+    [Monoliths to Microservices](https://www.amazon.com/Monolith-Microservices-Evolutionary-Patterns-Transform-ebook/dp/B081TKSSNN/ref=sr_1_1?keywords=monolith+to+microservices&qid=1639860376&sprefix=monolith+to+%2Caps%2C91&sr=8-1)
